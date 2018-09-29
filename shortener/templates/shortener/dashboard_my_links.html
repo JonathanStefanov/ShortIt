@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<div id="container-1" xmlns="http://www.w3.org/1999/html">
+	<div id="dsh-nav">
+		<ul id="ul-dsh-nav">
+			<li><a href="/dashboard/my_links">My Links</a></li>
+			<li><a href="/dashboard/new_link">New Link</a></li>
+		</ul>
+
+	</div>
+	<div id="dsh-welcome">
+        <center><h2>My Links</h2></center>
+        {% if empty %}
+            <center><h3>You haven't created any Link yet</h3></center>
+        {% endif %}
+        {% for url in urls %}
+            <center><p><a href="/a/{{ url.shortUrl }}">{{ url.shortUrl }}</a> <strong>=></strong> {{ url.longUrl }} || Redirected {{ url.timesClicked }} time(s)</p></center>
+        {% endfor %}
+
+	</div>
+
+</div>
+
+
+{% else %}
+<center><h2>You Are Currently Not Signed In, Please <a href="/signin">Sign Yourself In</a></h2></center>
+{% endif %}
+{% endblock %}

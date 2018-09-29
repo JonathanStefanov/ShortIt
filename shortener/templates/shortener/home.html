@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% if Valid%}
+<center><p>Your Link Has Been Created : <a href="g/{{ url }}">https://shortit.cc/g/{{ url }}</a></p></center>
+{% endif %}
+{% if user.is_authenticated %}
+<center><p>You Are Logged In, Please Go To Your <a href="/dashboard">Dashboard</a> To Have More Features</p></center>
+{% endif %}
+
+<form action="." method="post">
+    <center>{% csrf_token %}
+    {{ form.as_p }}</center>
+    <center><input id="submit-btn" type="submit" value="Short It!" /></center>
+</form>
+{% endblock %}

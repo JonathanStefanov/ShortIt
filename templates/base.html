@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<style>
+	@font-face {
+    font-family: roboto;
+    src: url({% static 'font/Roboto-Regular.ttf' %});
+	}
+	{% if user.is_authenticated %}
+	li p, .dropbtn{
+		display: inline-block;
+		text-align: center;
+		text-decoration: none;
+	}
+	li.dropdown{
+		display: inline-block;
+	}
+	.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+	{% endif %}
+	</style>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>{% block title %}ShortIt{% endblock %}</title>
+
+</head>
+<body>
+			<nav>			
+			<ul>
+				<li>
+					<a href="/">ShortIt</a>
+				</li>
+				{% if user.is_authenticated %}
+				<li class="dropdown" style="float: right;">
+					<p class="dropbtn" style="color: white; padding-right: 5px;">{{ user.username }}</p>
+					<div class="dropdown-content">
+						<a href="/dashboard">Dashboard</a>
+						<a href="/logout">Log Out</a>
+					</div>
+				</li>
+				{% else %}
+				<li style="float: right">
+					<a href="/signup">Sign Up</a>
+				</li>
+				<li style="float: right">
+					<a href="/signin">Sign In</a>
+				</li>
+				{% endif %}
+			</ul>
+		</nav>
+		</nav>
+	</div>
+	<section>
+		{% block content %}{% endblock %}
+	</section>
+</body>
+</html>

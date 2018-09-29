@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<center><h2>Sign Up</h2></center>
+
+{% if Success %}
+<center><p>Your Account Has Successfully Been Created! You may Log Yourself In</p></center>
+{% endif %}
+{% if error %}
+<p><strong>Something Went Wrong, Please Retry</strong></p>
+{% endif %}
+<form action="/signup" method="post">
+    <center>{% csrf_token %}
+    {{ form.as_p }}</center>
+    <center><input id="submit-btn" type="submit" value="Sign Up!" /></center>
+</form>
+{% endblock %}

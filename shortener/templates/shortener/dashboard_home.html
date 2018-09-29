@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+<div id="container-1">
+	<div id="dsh-nav">
+		<ul id="ul-dsh-nav">
+			<li><a href="/dashboard/my_links">My Links</a></li>
+			<li><a href="/dashboard/new_link">New Link</a></li>
+		</ul>
+	</div>
+	<div id="dsh-welcome">
+		<center><h2>Welcome, {{ user.username }}</h2></center>
+		<!--You have created x links for a total of y redirections! !-->
+	</div>
+
+</div>
+
+
+{% else %}
+<center><h2>You Are Currently Not Signed In, Please <a href="/signin">Sign Yourself In</a></h2></center>
+{% endif %}
+{% endblock %}

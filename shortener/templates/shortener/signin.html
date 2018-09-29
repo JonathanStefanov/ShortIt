@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<center><h1>Sign In</h1></center>
+{% if error %}
+<center><p><strong>Your Username Or Password Is Incorrect</strong></p></center>
+{% endif %}
+{% if user.is_authenticated %}
+<center><p>You Are Already Signed In</p></center>
+{% else %}
+<form method="post" action="/signin">
+    <center>{% csrf_token %}
+    {{ form.as_p }}</center>
+    <center><input type="submit" id="submit-btn" value="Sign In!" /></center>
+</form>
+{% endif %}
+
+{% endblock %}
